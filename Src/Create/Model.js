@@ -75,7 +75,18 @@ var VenderAdd = new mongoose.Schema({
     mobile : {
         type: Number,
         required: true,
-     
+    },
+    accountno :{
+        type: Number,
+        required: true,
+    },
+    ifsc :{
+        type: String,
+        required: true,
+    },
+    bankname :{
+        type: String,
+        required: true,
     },
     upiid : {
         type: String,

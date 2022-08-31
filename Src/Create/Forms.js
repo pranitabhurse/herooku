@@ -113,6 +113,9 @@ exports.venderAdding = async(req,res)=>{
                 country: req.body.country,
                 email: req.body.email,
                 mobile : req.body.mobile,
+                accountno : req.body.accountno,
+                ifsc : req.body.ifsc,
+                bankname : req.body.bankname,
                 upiid : req.body.upiid
             })
         

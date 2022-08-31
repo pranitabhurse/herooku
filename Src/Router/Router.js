@@ -9,5 +9,5 @@ route.post('/registration', controller.UserReg);
 route.post('/login', controller.UserLogin);
 route.post('/venderadd', controller.venderAdding);
 route.post('/venderdetails', controller.getVenderData);
-route.post('/venderdelete/:id', controller.deleteVender);
+route.delete('/venderdelete/:id', controller.deleteVender);
 module.exports = route;

@@ -217,3 +217,17 @@ exports.BulkPaylist = async(req,res)=>{
     return res.status(200).json({message:"invalid email"})
 }
 }
+
+
+// get bulk pay data 
+
+exports.getBulkPayaData =  async (req, res) => {
+    try{
+        const data = await BulkPay.find({email:req.body.email});
+       
+        res.json(data)
+    }
+    catch(error){
+        res.status(500).json({message: error.message})
+    }
+}

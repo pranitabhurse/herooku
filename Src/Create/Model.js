@@ -99,7 +99,25 @@ var VenderAdd = new mongoose.Schema({
 const VenderAdding = mongoose.model('VenderAdding', VenderAdd);
 
 
-module.exports = {Userdb, UserReg  , VenderAdding}
+var BulkPaylist = new mongoose.Schema({
+    email : {
+        type : String,
+        required: true
+    },
+    payment : {
+        type : Number,
+        required: true
+    },
+   date : {
+    type : Date
+   }
+   
+})
+
+const BulkPay = mongoose.model('BulkPay', BulkPaylist);
+
+
+module.exports = {BulkPay, UserReg  , VenderAdding}
 
 
 

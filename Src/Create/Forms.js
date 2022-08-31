@@ -1,10 +1,11 @@
 
 
-const { UserReg , VenderAdding} = require('../Create/Model');
+const { UserReg , VenderAdding , BulkPay} = require('../Create/Model');
 // var bodyParser = require('body-parser')
 const express = require('express')
 
 const emailvalidator = require("email-validator");
+const { now } = require('mongoose');
 exports.UserReg = async(req,res)=>{
     // validate request
   
@@ -168,4 +169,51 @@ exports.deleteVender = async (req, res) => {
     catch (error) {
         res.status(400).json({ message: error.message })
     }
+}
+
+
+// bulk payment 
+
+
+exports.BulkPaylist = async(req,res)=>{
+    // validate request
+  
+    if(!req.body){
+        res.status(400).send({ message : "required all feild"});
+        return;
+    }
+   else if(emailvalidator.validate(req.body.email)){
+    try{
+        const userExist= await UserReg.findOne({email : req.body.email})
+        if(!userExist){
+             return res.status(422).json({message:"this email is not register"})
+        }
+        else{
+            const paymentAdd = new BulkPay({  
+                
+                email: req.body.email,
+                payment : req.body.payment,
+                date : new Date()
+                
+            })
+        
+            // save user in the database
+            paymentAdd.save(paymentAdd)
+                .then(data => {
+                    return res.status(200).json({message:"Payment Add successfully"})
+                    // res.send(data)
+                    // res.redirect('/add-user');
+                })
+        }
+    }   catch(err) {
+                res.status(500).send({
+                    message : err.message || "Some error occurred while creating a create operation"
+                });
+            };
+            
+  }
+
+  else{
+    return res.status(200).json({message:"invalid email"})
+}
 }

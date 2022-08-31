@@ -7,6 +7,6 @@ const controller = require('../Create/Forms');
 route.post('/registration', controller.UserReg);
 
 route.post('/login', controller.UserLogin);
-
-
+route.post('/venderadd', controller.venderAdding);
+route.post('/venderdetails', controller.getVenderData);
 module.exports = route;

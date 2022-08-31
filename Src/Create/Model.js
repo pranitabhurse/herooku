@@ -53,7 +53,42 @@ const UserReg = mongoose.model('UserReg', schemaReg);
 
 
 
-module.exports = {Userdb, UserReg}
+
+
+
+
+
+
+var VenderAdd = new mongoose.Schema({
+    name : {
+        type : String,
+        required: true
+    },
+    country : {
+        type : String,
+        required: true
+    },
+    email : {
+        type: String,
+        required: true,
+    },
+    mobile : {
+        type: Number,
+        required: true,
+     
+    },
+    upiid : {
+        type: String,
+        required: true
+    },
+   
+})
+
+
+const VenderAdding = mongoose.model('VenderAdding', VenderAdd);
+
+
+module.exports = {Userdb, UserReg  , VenderAdding}
 
 
 

@@ -14,7 +14,7 @@ app.use(cors())
 
 connectDB()
 app.get('/',(req, res)=>{
-    res.send('Welcome to api')
+    res.send('Welcome to node js api')
 })
 
 

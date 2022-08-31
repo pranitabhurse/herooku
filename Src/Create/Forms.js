@@ -155,3 +155,17 @@ exports.getVenderData =  async (req, res) => {
         res.status(500).json({message: error.message})
     }
 }
+
+
+// delete vender
+
+exports.deleteVender = async (req, res) => {
+    try {
+        const id = req.params.id;
+        const data = await this.venderAdding.findByIdAndDelete(id)
+        res.send(`Document with ${data.name} has been deleted..`)
+    }
+    catch (error) {
+        res.status(400).json({ message: error.message })
+    }
+}

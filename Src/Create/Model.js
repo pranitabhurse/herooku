@@ -159,7 +159,7 @@ var BulkPaylist = new mongoose.Schema({
 const BulkPay = mongoose.model('BulkPay', BulkPaylist);
 
 
-module.exports = {BulkPay, UserReg  , VenderAdding}
+module.exports = {BulkPay, UserReg  , VenderAdding , CustomersAdding}
 
 
 

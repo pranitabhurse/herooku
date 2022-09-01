@@ -99,6 +99,48 @@ var VenderAdd = new mongoose.Schema({
 const VenderAdding = mongoose.model('VenderAdding', VenderAdd);
 
 
+// customers adding
+
+
+
+var CustomersAdd = new mongoose.Schema({
+    name : {
+        type : String,
+        required: true
+    },
+    country : {
+        type : String,
+        required: true
+    },
+    email : {
+        type: String,
+        required: true,
+    },
+    mobile : {
+        type: Number,
+        required: true,
+    },
+    accountno :{
+        type: Number,
+        required: true,
+    },
+    ifsc :{
+        type: String,
+        required: true,
+    },
+    bankname :{
+        type: String,
+        required: true,
+    },
+    upiid : {
+        type: String,
+        required: true
+    },
+   
+})
+
+const CustomersAdding = mongoose.model('CustomersAdding', CustomersAdd);
+
 var BulkPaylist = new mongoose.Schema({
     email : {
         type : String,

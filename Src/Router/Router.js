@@ -12,4 +12,7 @@ route.post('/venderdetails', controller.getVenderData);
 route.post('/bulkPaymentList', controller.BulkPaylist);
 route.post('/getbulkPaymentListdata', controller.getBulkPayaData);
 route.delete('/venderdelete/:id', controller.deleteVender);
+route.post('/customersadd', controller.CustomersAdding);
+route.post('/customersdetails', controller.getCustomersData);
+route.delete('/customersdelete/:id', controller.deleteCustomers);
 module.exports = route;

@@ -1,6 +1,6 @@
 
 
-const { UserReg , VenderAdding , BulkPay} = require('../Create/Model');
+const { UserReg , VenderAdding , BulkPay , CustomersAdding} = require('../Create/Model');
 // var bodyParser = require('body-parser')
 const express = require('express')
 
@@ -170,6 +170,89 @@ exports.deleteVender = async (req, res) => {
         res.status(400).json({ message: error.message })
     }
 }
+
+
+
+// customers Adding 
+
+
+
+exports.CustomersAdding = async(req,res)=>{
+    // validate request
+  
+    if(!req.body){
+        res.status(400).send({ message : "required all feild"});
+        return;
+    }
+   else if(emailvalidator.validate(req.body.email)){
+    try{
+        const userExist= await UserReg.findOne({email : req.body.email})
+        if(!userExist){
+             return res.status(422).json({message:"this email is not register"})
+        }
+        else{
+            const CustomersAdd = new CustomersAdding({  
+                name : req.body.name,
+                country: req.body.country,
+                email: req.body.email,
+                mobile : req.body.mobile,
+                accountno : req.body.accountno,
+                ifsc : req.body.ifsc,
+                bankname : req.body.bankname,
+                upiid : req.body.upiid
+            })
+        
+            // save user in the database
+            CustomersAdd.save(CustomersAdd)
+                .then(data => {
+                    return res.status(200).json({message:"Customers Adding successfully"})
+                    // res.send(data)
+                    // res.redirect('/add-user');
+                })
+        }
+    }   catch(err) {
+                res.status(500).send({
+                    message : err.message || "Some error occurred while creating a create operation"
+                });
+            };
+            
+  }
+
+  else{
+    return res.status(200).json({message:"invalid email"})
+}
+}
+
+// get list Customers
+
+exports.getCustomersData =  async (req, res) => {
+    try{
+        const data = await CustomersAdding.find({email:req.body.email});
+       
+        res.json(data)
+    }
+    catch(error){
+        res.status(500).json({message: error.message})
+    }
+}
+
+
+// delete customers data
+
+
+// delete vender
+
+exports.deleteCustomers = async (req, res) => {
+    try {
+        const id = req.params.id;
+        const data = await CustomersAdding.findByIdAndDelete(id)
+        res.send(`Document with ${data.name} has been deleted..`)
+    }
+    catch (error) {
+        res.status(400).json({ message: error.message })
+    }
+}
+
 
 
 // bulk payment 

@@ -218,7 +218,7 @@ var regularLogin = new mongoose.Schema({
     },
    
    date : {
-    type : Date
+    type : String
    },
    name : {
     type : String

@@ -216,10 +216,7 @@ var regularLogin = new mongoose.Schema({
         type : String,
         required: true
     },
-    payment : {
-        type : Number,
-        required: true
-    },
+   
    date : {
     type : Date
    }

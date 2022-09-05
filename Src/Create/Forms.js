@@ -413,7 +413,7 @@ exports.employeeLogin = async(req,res)=>{
 
 exports.getEmployeeData =  async (req, res) => {
     try{
-        const data = await EmployeeReg();
+        const data = await EmployeeReg.find();
        
         res.json(data)
     }

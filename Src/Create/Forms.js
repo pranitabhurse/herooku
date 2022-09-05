@@ -487,7 +487,7 @@ exports.regularLogoutReport = async(req,res)=>{
                 email: req.body.email,              
                 date : req.body.date,
                 name :userExist.name,
-                description:req.body.descriptions
+                description:req.body.description
             })
         
             // save user in the database

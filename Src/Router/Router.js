@@ -26,4 +26,9 @@ route.get('/employeedata', controller.getEmployeeData);
 
 route.post('/employeeregularLogin', controller.regularLogin);
 route.get('/logindata', controller.getLoginData);
+
+
+
+route.post('/employeeregularLogout', controller.regularLogoutReport);
+route.get('/logoutndata', controller.getLogoutData);
 module.exports = route;

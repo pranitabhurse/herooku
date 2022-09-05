@@ -226,12 +226,34 @@ var regularLogin = new mongoose.Schema({
    
 })
 
+
+
 const regularLoginData = mongoose.model('regularLoginData', regularLogin);
 
+var regularLogout = new mongoose.Schema({
+    email : {
+        type : String,
+        required: true
+    },
+   
+   date : {
+    type : String
+   },
+   name : {
+    type : String
+   },
+   description : {
+    type : String
+   }
+   
+})
+
+
+const regularLogoutData = mongoose.model('regularLogoutData', regularLogout);
 
 
 
-module.exports = {BulkPay, UserReg  , VenderAdding , CustomersAdding , EmployeeReg , regularLoginData}
+module.exports = {BulkPay, UserReg  , VenderAdding , CustomersAdding , EmployeeReg , regularLoginData , regularLogoutData}
 
 
 

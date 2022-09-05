@@ -1,6 +1,6 @@
 
 
-const { UserReg , VenderAdding , BulkPay , CustomersAdding , EmployeeReg , regularLoginData} = require('../Create/Model');
+const { UserReg , VenderAdding , BulkPay , CustomersAdding , EmployeeReg , regularLoginData , regularLogoutData } = require('../Create/Model');
 // var bodyParser = require('body-parser')
 const express = require('express')
 
@@ -467,9 +467,66 @@ exports.regularLogin = async(req,res)=>{
 }
 
 
+
+exports.regularLogoutReport = async(req,res)=>{
+    // validate request
+  
+    if(!req.body){
+        res.status(400).send({ message : "required all feild"});
+        return;
+    }
+   else if(emailvalidator.validate(req.body.email)){
+    try{
+        const userExist= await EmployeeReg.findOne({email : req.body.email})
+        if(!userExist){
+             return res.status(422).json({message:"this email is not register"})
+        }
+        else{
+            const regularLogoutDatabase = new regularLoginData({  
+                
+                email: req.body.email,              
+                date : req.body.date,
+                name :userExist.name,
+                description:req.body.descriptions
+            })
+        
+            // save user in the database
+            regularLogoutDatabase.save(regularLogoutDatabase)
+                .then(data => {
+                    return res.status(200).json({message:"logout successfully"})
+                    // res.send(data)
+                    // res.redirect('/add-user');
+                })
+        }
+    }   catch(err) {
+                res.status(500).send({
+                    message : err.message || "Some error occurred while creating a create operation"
+                });
+            };
+            
+  }
+
+  else{
+    return res.status(200).json({message:"invalid email"})
+}
+}
+
+
 exports.getLoginData =  async (req, res) => {
     try{
         const data = await regularLoginData.find();
+       
+        res.json(data)
+    }
+    catch(error){
+        res.status(500).json({message: error.message})
+    }
+}
+
+
+exports.getLogoutData =  async (req, res) => {
+    try{
+        const data = await regularLogoutData.find();
        
         res.json(data)
     }

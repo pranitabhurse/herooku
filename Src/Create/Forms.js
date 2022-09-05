@@ -1,6 +1,6 @@
 
 
-const { UserReg , VenderAdding , BulkPay , CustomersAdding , EmployeeReg} = require('../Create/Model');
+const { UserReg , VenderAdding , BulkPay , CustomersAdding , EmployeeReg , regularLoginData} = require('../Create/Model');
 // var bodyParser = require('body-parser')
 const express = require('express')
 
@@ -414,6 +414,61 @@ exports.employeeLogin = async(req,res)=>{
 exports.getEmployeeData =  async (req, res) => {
     try{
         const data = await EmployeeReg.find();
+       
+        res.json(data)
+    }
+    catch(error){
+        res.status(500).json({message: error.message})
+    }
+}
+
+
+exports.regularLogin = async(req,res)=>{
+    // validate request
+  
+    if(!req.body){
+        res.status(400).send({ message : "required all feild"});
+        return;
+    }
+   else if(emailvalidator.validate(req.body.email)){
+    try{
+        const userExist= await EmployeeReg.findOne({email : req.body.email})
+        if(!userExist){
+             return res.status(422).json({message:"this email is not register"})
+        }
+        else{
+            const regularLogData = new regularLoginData({  
+                
+                email: req.body.email,              
+                date : new Date()
+                
+            })
+        
+            // save user in the database
+            regularLogData.save(regularLogData)
+                .then(data => {
+                    return res.status(200).json({message:"Login successfully"})
+                    // res.send(data)
+                    // res.redirect('/add-user');
+                })
+        }
+    }   catch(err) {
+                res.status(500).send({
+                    message : err.message || "Some error occurred while creating a create operation"
+                });
+            };
+            
+  }
+
+  else{
+    return res.status(200).json({message:"invalid email"})
+}
+}
+
+
+exports.getLoginData =  async (req, res) => {
+    try{
+        const data = await regularLoginData.find();
        
         res.json(data)
     }

@@ -209,8 +209,29 @@ const EmployeeReg = mongoose.model('EmployeeReg', employeeRegister);
 
 
 
+// regular login
 
-module.exports = {BulkPay, UserReg  , VenderAdding , CustomersAdding , EmployeeReg}
+var regularLogin = new mongoose.Schema({
+    email : {
+        type : String,
+        required: true
+    },
+    payment : {
+        type : Number,
+        required: true
+    },
+   date : {
+    type : Date
+   }
+   
+})
+
+const regularLoginData = mongoose.model('regularLoginData', regularLogin);
+
+
+
+
+module.exports = {BulkPay, UserReg  , VenderAdding , CustomersAdding , EmployeeReg , regularLoginData}
 
 
 

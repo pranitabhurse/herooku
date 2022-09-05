@@ -159,7 +159,58 @@ var BulkPaylist = new mongoose.Schema({
 const BulkPay = mongoose.model('BulkPay', BulkPaylist);
 
 
-module.exports = {BulkPay, UserReg  , VenderAdding , CustomersAdding}
+
+
+// company profile 
+
+//employee registration
+
+
+
+var employeeRegister = new mongoose.Schema({
+    name : {
+        type : String,
+        required: true
+    },
+   
+    email : {
+        type: String,
+        required: true,
+    },
+    mobile : {
+        type: Number,
+        required: true,
+    },
+    accountno :{
+        type: Number,
+        required: true,
+    },
+    ifsc :{
+        type: String,
+        required: true,
+    },
+    
+   date_of_join:{
+    type: Date,
+    required: true,
+   },
+   designation:{
+    type: String,
+        required: true,
+   },
+   password:{
+    type: String,
+    required: true,
+   }
+
+})
+
+const EmployeeReg = mongoose.model('EmployeeReg', employeeRegister);
+
+
+
+
+module.exports = {BulkPay, UserReg  , VenderAdding , CustomersAdding , EmployeeReg}
 
 
 

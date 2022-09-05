@@ -1,6 +1,6 @@
 
 
-const { UserReg , VenderAdding , BulkPay , CustomersAdding} = require('../Create/Model');
+const { UserReg , VenderAdding , BulkPay , CustomersAdding , EmployeeReg} = require('../Create/Model');
 // var bodyParser = require('body-parser')
 const express = require('express')
 
@@ -313,4 +313,56 @@ exports.getBulkPayaData =  async (req, res) => {
     catch(error){
         res.status(500).json({message: error.message})
     }
+}
+
+// company profile
+
+// register Employee
+
+
+
+exports.employeeRegistration = async(req,res)=>{
+    // validate request
+  
+    if(!req.body){
+        res.status(400).send({ message : "required all feild"});
+        return;
+    }
+   else if(emailvalidator.validate(req.body.email)){
+    try{
+        const userExist= await UserReg.findOne({email : req.body.email})
+        if(!userExist){
+             return res.status(422).json({message:"this email is not register"})
+        }
+        else{
+            const EmployeeReg = new EmployeeReg({  
+                name : req.body.name,
+                email: req.body.email,
+                mobile : req.body.mobile,
+                accountno : req.body.accountno,
+                ifsc : req.body.ifsc,
+               date_of_join:req.body.date_of_join,
+               designation:req.body.designation,
+               password:req.body.password,
+            })
+        
+            // save user in the database
+            EmployeeReg.save(EmployeeReg)
+                .then(data => {
+                    return res.status(200).json({message:"Employee Adding successfully"})
+                    // res.send(data)
+                    // res.redirect('/add-user');
+                })
+        }
+    }   catch(err) {
+                res.status(500).send({
+                    message : err.message || "Some error occurred while creating a create operation"
+                });
+            };
+            
+  }
+
+  else{
+    return res.status(200).json({message:"invalid email"})
+}
 }

@@ -15,4 +15,10 @@ route.delete('/venderdelete/:id', controller.deleteVender);
 route.post('/customersadd', controller.CustomersAdding);
 route.post('/customersdetails', controller.getCustomersData);
 route.delete('/customersdelete/:id', controller.deleteCustomers);
+
+
+
+//company profile 
+
+route.post('/employeereg', controller.employeeRegistration);
 module.exports = route;

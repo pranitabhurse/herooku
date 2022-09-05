@@ -482,7 +482,7 @@ exports.regularLogoutReport = async(req,res)=>{
              return res.status(422).json({message:"this email is not register"})
         }
         else{
-            const regularLogoutDatabase = new regularLoginData({  
+            const regularLogoutDatabase = new regularLogoutData({  
                 
                 email: req.body.email,              
                 date : req.body.date,

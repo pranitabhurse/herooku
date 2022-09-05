@@ -331,8 +331,8 @@ exports.employeeRegistration = async(req,res)=>{
    else if(emailvalidator.validate(req.body.email)){
     try{
         const userExist= await EmployeeReg.findOne({email : req.body.email})
-        if(!userExist){
-             return res.status(422).json({message:"this email is not register"})
+        if(userExist){
+             return res.status(422).json({message:"this email is alreay register"})
         }
         else{
             const EmployeeRegister = new EmployeeReg({  

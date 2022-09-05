@@ -440,7 +440,8 @@ exports.regularLogin = async(req,res)=>{
             const regularLogData = new regularLoginData({  
                 
                 email: req.body.email,              
-                date : req.body.date
+                date : req.body.date,
+                name :userExist.name
                 
             })
         

@@ -219,6 +219,9 @@ var regularLogin = new mongoose.Schema({
    
    date : {
     type : Date
+   },
+   name : {
+    type : String
    }
    
 })

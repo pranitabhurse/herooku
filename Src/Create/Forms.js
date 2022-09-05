@@ -341,7 +341,7 @@ exports.employeeRegistration = async(req,res)=>{
                 mobile : req.body.mobile,
                 accountno : req.body.accountno,
                 ifsc : req.body.ifsc,
-               date_of_join:req.body.date_of_join,
+               date_of_join:new Date(),
                designation:req.body.designation,
                password:req.body.password,
             })

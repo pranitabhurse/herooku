@@ -21,4 +21,6 @@ route.delete('/customersdelete/:id', controller.deleteCustomers);
 //company profile 
 
 route.post('/employeereg', controller.employeeRegistration);
+route.post('/employeelogin', controller.employeeLogin);
+route.get('/employeedata', controller.getEmployeeData);
 module.exports = route;

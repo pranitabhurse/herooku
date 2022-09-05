@@ -366,3 +366,58 @@ exports.employeeRegistration = async(req,res)=>{
     return res.status(200).json({message:"invalid email"})
 }
 }
+
+
+
+// employee login
+
+
+exports.employeeLogin = async(req,res)=>{
+  
+    try{
+        const { email , password }= req.body;
+    if( !email || !password  )
+    {
+        return res.status(400).json({message :"error please fill all feield"}) 
+    }
+      const loginData = await EmployeeReg.findOne({email:email});
+      if(loginData){
+        //   const matchPass = await bcrypt.compare(password , loginData.password)
+          if(password!==loginData.password)
+          {
+      
+            return res.status(400).json({message :"invalid details"}) 
+    
+          }
+   
+      else{
+    //  console.log(loginData); 
+     res.send(loginData)
+        // return res.status(201).json({message :"user login successfully"}) ;
+        
+      }
+    }
+     else {
+        return res.status(400).json({message :"invalid details"}) 
+     }
+      
+    }catch(err){
+       console.log(err) 
+    }
+    
+}
+
+
+// get employee data
+
+
+exports.getEmployeeData =  async (req, res) => {
+    try{
+        const data = await EmployeeReg();
+       
+        res.json(data)
+    }
+    catch(error){
+        res.status(500).json({message: error.message})
+    }
+}

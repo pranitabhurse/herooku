@@ -330,12 +330,12 @@ exports.employeeRegistration = async(req,res)=>{
     }
    else if(emailvalidator.validate(req.body.email)){
     try{
-        const userExist= await UserReg.findOne({email : req.body.email})
+        const userExist= await EmployeeReg.findOne({email : req.body.email})
         if(!userExist){
              return res.status(422).json({message:"this email is not register"})
         }
         else{
-            const EmployeeReg = new EmployeeReg({  
+            const EmployeeRegister = new EmployeeReg({  
                 name : req.body.name,
                 email: req.body.email,
                 mobile : req.body.mobile,
@@ -347,7 +347,7 @@ exports.employeeRegistration = async(req,res)=>{
             })
         
             // save user in the database
-            EmployeeReg.save(EmployeeReg)
+            EmployeeRegister.save(EmployeeRegister)
                 .then(data => {
                     return res.status(200).json({message:"Employee Adding successfully"})
                     // res.send(data)

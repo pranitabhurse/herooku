@@ -31,4 +31,10 @@ route.get('/logindata', controller.getLoginData);
 
 route.post('/employeeregularLogout', controller.regularLogoutReport);
 route.get('/logoutndata', controller.getLogoutData);
+
+
+
+// student form
+route.post('/studentform', controller.studentForm);
+route.get('/ggetstudentdata', controller.getStudent);
 module.exports = route;

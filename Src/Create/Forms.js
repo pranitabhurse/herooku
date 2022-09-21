@@ -1,6 +1,6 @@
 
 
-const { UserReg , VenderAdding , BulkPay , CustomersAdding , EmployeeReg , regularLoginData , regularLogoutData } = require('../Create/Model');
+const { UserReg , VenderAdding , BulkPay , CustomersAdding , EmployeeReg , regularLoginData , regularLogoutData , studentReg } = require('../Create/Model');
 // var bodyParser = require('body-parser')
 const express = require('express')
 
@@ -527,6 +527,77 @@ exports.getLoginData =  async (req, res) => {
 exports.getLogoutData =  async (req, res) => {
     try{
         const data = await regularLogoutData.find();
+       
+        res.json(data)
+    }
+    catch(error){
+        res.status(500).json({message: error.message})
+    }
+}
+
+
+
+
+// student form
+
+
+exports.studentForm = async(req,res)=>{
+    // validate request
+  
+    if(!req.body){
+        res.status(400).send({ message : "required all feild"});
+        return;
+    }
+   else if(emailvalidator.validate(req.body.email)){
+    try{
+        const userExist= await UserReg.findOne({email : req.body.email})
+        if(userExist){
+             return res.status(422).json({message:"this email is alreay register"})
+        }
+        else{
+            const StudentR = new studentReg({  
+                name : req.body.name,
+                email: req.body.email,
+                mobile : req.body.mobile,
+                course : req.body.course,
+                fees: req.body.fees,
+                finst : req.body.finst,
+                sinst : req.body.sinst,
+                tinst : req.body.tinst,
+                accountno : req.body.accountno,
+                ifsccode : req.body.ifsccode,
+                classTime : req.body.classTime,
+                
+                
+            })
+        
+            // save user in the database
+            StudentR.save(StudentR)
+                .then(data => {
+                    return res.status(200).json({message:"Student register successfully"})
+                    // res.send(data)
+                    // res.redirect('/add-user');
+                })
+        }
+    }   catch(err) {
+                res.status(500).send({
+                    message : err.message || "Some error occurred while creating a create operation"
+                });
+            };
+            
+  }
+
+  else{
+    return res.status(200).json({message:"invalid email"})
+}
+}
+
+
+//get student 
+
+exports.getStudent =  async (req, res) => {
+    try{
+        const data = await studentReg.find();
        
         res.json(data)
     }

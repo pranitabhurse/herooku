@@ -251,9 +251,61 @@ var regularLogout = new mongoose.Schema({
 
 const regularLogoutData = mongoose.model('regularLogoutData', regularLogout);
 
+var registerStudent = new mongoose.Schema({
+    name : {
+        type : String,
+        required: true
+    },
+    mobile : {
+        type : Number,
+        required: true
+    },
+    email : {
+        type : String,
+        required: true
+    },
+    course : {
+        type : String,
+        required: true
+    },
+    fees : {
+        type : String,
+        required: true
+    },
+    finst : {
+        type : String,
+        required: true
+    },
+    sinst : {
+        type : String,
+        required: true
+    },
+    tinst : {
+        type : String,
+        required: true
+    },
+   
+   accountno : {
+    type : String,
+    required: true
+   },
+   ifsccode:{
+    type : String,
+    required: true
+   },
+   classTime : {
+    type : String
+   }
+   
+})
 
 
-module.exports = {BulkPay, UserReg  , VenderAdding , CustomersAdding , EmployeeReg , regularLoginData , regularLogoutData}
+const studentReg = mongoose.model('studentReg', registerStudent);
+
+
+
+
+module.exports = {BulkPay, UserReg  , VenderAdding , CustomersAdding , EmployeeReg , regularLoginData , regularLogoutData , studentReg}
 
 
 

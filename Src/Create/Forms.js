@@ -567,7 +567,7 @@ exports.studentForm = async(req,res)=>{
                 accountno : req.body.accountno,
                 ifsccode : req.body.ifsccode,
                 classTime : req.body.classTime,
-                
+                Address:req.body.Address
                 
             })
         

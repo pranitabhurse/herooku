@@ -295,6 +295,9 @@ var registerStudent = new mongoose.Schema({
    },
    classTime : {
     type : String
+   },
+   Address : {
+    type : String
    }
    
 })

@@ -605,3 +605,36 @@ exports.getStudent =  async (req, res) => {
         res.status(500).json({message: error.message})
     }
 }
+
+
+// email
+
+var nodemailer = require('nodemailer');
+exports.getEmail = (req, res)=>{
+
+    const {to, subject, text } = req.body;
+    var transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: 'pranita.arenaitech@gmail.com',
+          pass: 'ojhujfprjkvxcdvd'
+        }
+      });
+      
+      var mailOptions = {
+        from: 'pranita.arenaitech@gmail.com',
+        to: to,
+        subject: subject,
+        text: text
+      };
+      
+      transporter.sendMail(mailOptions, function(error, info){
+      
+        
+            if (error) {
+                return console.log(error);
+            }
+            res.status(200).send({ message: "Mail send", message_id: info.messageId });
+        });
+    
+}

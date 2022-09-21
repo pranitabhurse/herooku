@@ -550,7 +550,7 @@ exports.studentForm = async(req,res)=>{
     }
    else if(emailvalidator.validate(req.body.email)){
     try{
-        const userExist= await UserReg.findOne({email : req.body.email})
+        const userExist= await studentReg.findOne({email : req.body.email})
         if(userExist){
              return res.status(422).json({message:"this email is alreay register"})
         }

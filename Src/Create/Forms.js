@@ -709,3 +709,16 @@ exports.studentExamForm = async(req,res)=>{
     return res.status(200).json({message:"invalid email"})
 }
 }
+
+
+
+exports.getStudentexam =  async (req, res) => {
+    try{
+        const data = await this.studentExamForm.find();
+       
+        res.json(data)
+    }
+    catch(error){
+        res.status(500).json({message: error.message})
+    }
+}

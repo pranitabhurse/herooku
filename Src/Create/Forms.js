@@ -625,7 +625,7 @@ exports.getEmail = (req, res)=>{
         from: 'pranita.arenaitech@gmail.com',
         to: to,
         subject: subject,
-        html: content
+        text: text
       };
       
       transporter.sendMail(mailOptions, function(error, info){

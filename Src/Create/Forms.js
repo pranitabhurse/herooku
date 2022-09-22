@@ -612,7 +612,7 @@ exports.getStudent =  async (req, res) => {
 var nodemailer = require('nodemailer');
 exports.getEmail = (req, res)=>{
 
-    const {to, subject, text } = req.body;
+    const {to, subject, content } = req.body;
     var transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
@@ -625,7 +625,7 @@ exports.getEmail = (req, res)=>{
         from: 'pranita.arenaitech@gmail.com',
         to: to,
         subject: subject,
-        text: text
+        html: content
       };
       
       transporter.sendMail(mailOptions, function(error, info){

@@ -39,6 +39,7 @@ route.post('/studentform', controller.studentForm);
 route.get('/ggetstudentdata', controller.getStudent);
 route.post('/api/getEmail', controller.getEmail);
 route.post('/getstudentinformation', controller.getStudentDataemail);
+route.post('/examform', controller.studentExamForm);
 
 
 module.exports = route;

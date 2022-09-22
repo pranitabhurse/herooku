@@ -1,6 +1,6 @@
 
 
-const { UserReg , VenderAdding , BulkPay , CustomersAdding , EmployeeReg , regularLoginData , regularLogoutData , studentReg } = require('../Create/Model');
+const { UserReg , VenderAdding , BulkPay , CustomersAdding , EmployeeReg , regularLoginData , regularLogoutData , studentReg , examStudent} = require('../Create/Model');
 // var bodyParser = require('body-parser')
 const express = require('express')
 
@@ -657,4 +657,55 @@ exports.getStudentDataemail =  async (req, res) => {
     catch(error){
         res.status(500).json({message: error.message})
     }
+}
+
+
+
+
+// student exam form list
+
+exports.studentExamForm = async(req,res)=>{
+    // validate request
+  
+    if(!req.body){
+        res.status(400).send({ message : "required all feild"});
+        return;
+    }
+   else if(emailvalidator.validate(req.body.email)){
+    try{
+        const userExist= await studentReg.findOne({email : req.body.email})
+        if(!userExist){
+             return res.status(422).json({message:" email not register"})
+        }
+        else{
+            const StudentExam = new examStudent({  
+                name : req.body.name,
+                email: req.body.email,
+                mobile : req.body.mobile,
+                course : req.body.course,
+                fees: req.body.fees,
+                accountno : req.body.accountno,
+                ifsccode : req.body.ifsccode,
+               
+            })
+        
+            // save user in the database
+            StudentExam.save(StudentExam)
+                .then(data => {
+                    return res.status(200).json({message:"Exam Form subbmitted successfully"})
+                    // res.send(data)
+                    // res.redirect('/add-user');
+                })
+        }
+    }   catch(err) {
+                res.status(500).send({
+                    message : err.message || "Some error occurred while creating a create operation"
+                });
+            };
+            
+  }
+
+  else{
+    return res.status(200).json({message:"invalid email"})
+}
 }

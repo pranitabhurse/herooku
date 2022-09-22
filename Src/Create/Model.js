@@ -308,7 +308,51 @@ const studentReg = mongoose.model('studentReg', registerStudent);
 
 
 
-module.exports = {BulkPay, UserReg  , VenderAdding , CustomersAdding , EmployeeReg , regularLoginData , regularLogoutData , studentReg}
+
+// exam form 
+
+
+var examForm = new mongoose.Schema({
+    name : {
+        type : String,
+        required: true
+    },
+    mobile : {
+        type : Number,
+        required: true
+    },
+    email : {
+        type : String,
+        required: true
+    },
+    course : {
+        type : String,
+        required: true
+    },
+    fees : {
+        type : String,
+        required: true
+    },
+  
+   accountno : {
+    type : String,
+    required: true
+   },
+   ifsccode:{
+    type : String,
+    required: true
+   },
+   
+   
+   
+})
+
+
+const examStudent = mongoose.model('examStudent', examForm);
+
+
+
+module.exports = {BulkPay, UserReg  , VenderAdding , CustomersAdding , EmployeeReg , regularLoginData , regularLogoutData , studentReg , examStudent}
 
 
 

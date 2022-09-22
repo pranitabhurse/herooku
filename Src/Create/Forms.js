@@ -646,8 +646,13 @@ exports.getEmail = (req, res)=>{
 exports.getStudentDataemail =  async (req, res) => {
     try{
         const data = await studentReg.find({email:req.body.email});
-       
+        if(!data){
+            return res.status(422).json({message:"this email is not register"})
+       }
+       else{
         res.json(data)
+       }
+        
     }
     catch(error){
         res.status(500).json({message: error.message})

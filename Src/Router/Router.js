@@ -38,4 +38,7 @@ route.get('/logoutndata', controller.getLogoutData);
 route.post('/studentform', controller.studentForm);
 route.get('/ggetstudentdata', controller.getStudent);
 route.post('/api/getEmail', controller.getEmail);
+route.post('/getstudentinformation', controller.getStudentDataemail);
+
+
 module.exports = route;

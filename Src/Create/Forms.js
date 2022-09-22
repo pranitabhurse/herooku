@@ -638,3 +638,18 @@ exports.getEmail = (req, res)=>{
         });
     
 }
+
+
+// get data using email from student table 
+
+
+exports.getStudentDataemail =  async (req, res) => {
+    try{
+        const data = await studentReg.find({email:req.body.email});
+       
+        res.json(data)
+    }
+    catch(error){
+        res.status(500).json({message: error.message})
+    }
+}

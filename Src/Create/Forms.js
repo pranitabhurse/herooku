@@ -714,7 +714,7 @@ exports.studentExamForm = async(req,res)=>{
 
 exports.getStudentexam =  async (req, res) => {
     try{
-        const data = await this.studentExamForm.find();
+        const data = await this.examStudent.find();
        
         res.json(data)
     }

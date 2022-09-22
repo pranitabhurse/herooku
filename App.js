@@ -14,8 +14,9 @@ app.use(cors())
 
 connectDB()
 app.get('/',(req, res)=>{
-    res.send('Welcome to node  ')
+    res.send('Welcome to node js ')
 })
+
 
 
 app.use('/', require('./Src/Router/Router'))

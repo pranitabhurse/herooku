@@ -559,6 +559,7 @@ exports.studentForm = async(req,res)=>{
                 name : req.body.name,
                 email: req.body.email,
                 mobile : req.body.mobile,
+                Pmobile : req.body.Pmobile,
                 course : req.body.course,
                 fees: req.body.fees,
                 finst : req.body.finst,

@@ -296,10 +296,7 @@ var registerStudent = new mongoose.Schema({
    ifsccode:{
     type : String,
     required: true
-   },
-   classTime : {
-    type : String
-   },
+   },  
    Address : {
     type : String
    }

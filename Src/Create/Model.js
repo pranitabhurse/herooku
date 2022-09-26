@@ -299,8 +299,10 @@ var registerStudent = new mongoose.Schema({
    },  
    Address : {
     type : String
+   },
+   statusPaid : {
+    type : String
    }
-   
 })
 
 

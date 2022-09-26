@@ -567,8 +567,8 @@ exports.studentForm = async(req,res)=>{
                 tinst : req.body.tinst,
                 accountno : req.body.accountno,
                 ifsccode : req.body.ifsccode,
-                Address:req.body.Address
-                
+                Address:req.body.Address,
+                statusPaid:req.body.statusPaid
             })
         
             // save user in the database
@@ -709,6 +709,29 @@ exports.studentExamForm = async(req,res)=>{
     return res.status(200).json({message:"invalid email"})
 }
 }
+
+
+
+//update 
+
+
+exports.updateStudent = async (req, res) => {
+    try {
+        const id = req.params.id;
+        const updatedData = req.body;
+        const options = { new: true };
+
+        const result = await studentReg.findByIdAndUpdate(
+            id, updatedData, options
+        )
+
+        res.send(result)
+    }
+    catch (error) {
+        res.status(400).json({ message: error.message })
+    }
+}
+
 
 
 
